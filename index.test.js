@@ -21,6 +21,13 @@ it('remove :global - as part of selector', () => {
         { });
 });
 
+it('remove :global - as part of selector with selector included', () => {
+    return run(
+        '.root :global(.foo) .text { margin: 0 6px; }',
+        '.root .foo .text { margin: 0 6px; }',
+        { });
+});
+
 it('remove :global - as part of selector with multiple spaces', () => {
     return run(
         '.root :global  .text { margin: 0 6px; }',

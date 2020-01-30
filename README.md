@@ -19,7 +19,7 @@
 a { }
 ```
 
-2. Remove :global as part of a selecotr
+2. Remove :global as part of a selector
 ```css
 .root :global .text { margin: 0 6px; }
 ```
@@ -28,7 +28,16 @@ a { }
 .root .text { margin: 0 6px; }
 ```
 
-3. Remove :global as part of params of @keyframe
+3. Remove :global(selector) as part of a selector
+```css
+.root :global(#foo1337 .bar:hover) .text { margin: 0 6px; }
+```
+
+```css
+.root #foo1337 .bar:hover .text { margin: 0 6px; }
+```
+
+4. Remove :global as part of params of @keyframe
 ```css
 @keyframes :global(zoomIn) { }
 ```

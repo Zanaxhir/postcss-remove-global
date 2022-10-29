@@ -35,6 +35,14 @@ it('remove :global - as part of selector with multiple spaces', () => {
         { });
 });
 
+// eslint-disable-next-line max-len
+it('remove multiple :global - as part of selector with selector included', () => {
+    return run(
+        '.root :global(.foo) :global(.bar) .text { margin: 0 6px; }',
+        '.root .foo .bar .text { margin: 0 6px; }',
+        { });
+});
+
 it('remove :global - as part of @keyframe params', () => {
     return run('@keyframes :global(zoomIn) { }', '@keyframes zoomIn { }', { });
 });

@@ -8,7 +8,7 @@ module.exports = postcss.plugin(pluginName, () => (root) => {
         // :global as nested selector
         const globalReg = /:global(\s+)/;
         // :global(.selector) as nested selector
-        const globalWithSelectorReg = /:global\(((?:\w|\.|:|#)+)\)/g;
+        const globalWithSelectorReg = /:global\(((?:\w|-|\.|:|#)+)\)/g;
         if (rule.selector === ':global') {
             rule.parent.append(...rule.nodes);
             rule.remove();
@@ -23,7 +23,7 @@ module.exports = postcss.plugin(pluginName, () => (root) => {
     root.walkAtRules(atRule => {
         const name = atRule.name;
         const params = atRule.params;
-        const globalReg = /:global\((\w+)\)/;
+        const globalReg = /:global\(([\w-]+)\)/;
         if (name === 'keyframes' && params.match(globalReg)) {
             atRule.params = params.replace(globalReg, '$1');
         }
